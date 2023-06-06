@@ -61,7 +61,7 @@ test -f "$HOME/.cacert.pem" && export CURL_CA_BUNDLE=~/.cacert.pem
 # add ZR for local perl? this should come before perlbrew...
 export ZR_REPO="$HOME/ziprecruiter"
 if [ $SHLVL -eq 1 ] ; then
-  export PERL5LIB=$(printf "$ZR_REPO/app/lib"; printf ":%s" $ZR_REPO/common/perl/*/lib)
+  export PERL5LIB=$(printf "$ZR_REPO/app/lib:$ZR_REPO/bin/laptop/lib"; printf ":%s" $ZR_REPO/common/perl/*/lib)
   # setup perl local lib:
   eval "$(perl -I$HOME/perl5/lib/perl5 -Mlocal::lib)"
 fi
