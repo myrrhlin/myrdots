@@ -1,0 +1,14 @@
+# set mailmap = true
+set main-view-date = custom
+set main-view-date-format = "%Y-%m-%d %H:%M"
+set main-view-author = email-user
+set blame-view-author = email-user
+
+# in main view, use 'V' to revert selected commit
+bind main V !?git revert %(commit)
+
+# in status view, use 'a' to amend last commit
+bind status a !?git commit --amend
+# refresh-mode periodic
+# refresh-interval 5
+
