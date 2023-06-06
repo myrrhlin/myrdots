@@ -1,0 +1,34 @@
+# vim: set ft=sh:
+PROVE_DEFAULTS=""
+
+export LOG_LEVEL=INFO
+# export ZR_LOG_LEVEL=INFO
+
+# to reach these files from inside container, we'll need a volume
+# export DOTF=
+
+# copied to perl-testing-bin
+# source $DOTF/dirstack.sh
+
+# history being stored in /tmp -- not permanent enough?
+# source $DOTF/ehistory.bash
+
+# git repo is mounted ro as volume. maybe dont need git tools
+# source $DOTF/gitlib.sh
+#export GIT_PS1_SHOWCOLORHINTS=true
+#export GIT_PS1_SHOWDIRTYSTATE=1
+export EDITOR=vim
+
+# PROMPT_COMMAND='__git_ps1 "[\u@\h \W]" "\\\$ "'
+
+function lt {
+  ls -lt "$@" | head
+}
+function authors {
+  git annotate --line-porcelain "$@" | grep "^author " | sort | uniq -c | sort -nrk 1
+}
+
+export PERLDOC_PAGER='less -r'
+
+source $DOTF/zip-env.bash
+

@@ -1,0 +1,25 @@
+[core]
+	repositoryformatversion = 0
+	filemode = true
+	bare = false
+	logallrefupdates = true
+[remote "origin"]
+	url = git@git.ziprecruiter.com:ZipRecruiter/ziprecruiter.git
+	fetch = +refs/heads/*:refs/remotes/origin/*
+	tagOpt = --no-tags
+        #fetch = +refs/heads/master:refs/remotes/origin/master
+        #fetch = +refs/heads/nik*:refs/remotes/origin/nik*
+        #fetch = +refs/heads/michaelh*:refs/remotes/origin/michaelh*
+        #fetch = +refs/heads/build.*:refs/remotes/origin/build.*
+        #fetch = +refs/heads/test.*:refs/remotes/origin/test.*
+        #fetch = +refs/heads/stg.*:refs/remotes/origin/stg.*
+        #fetch = +refs/heads/prod.*:refs/remotes/origin/prod.*
+[fetch]
+	pruneTags = true
+[branch "master"]
+	remote = origin
+	merge = refs/heads/master
+[remote "michael"]
+	url = git@git.ziprecruiter.com:michaelh/ziprecruiter.git
+	fetch = +refs/heads/*:refs/remotes/michael/*
+	tagopt = --no-tags

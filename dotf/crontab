@@ -1,0 +1,1 @@
+0 10 * * 1 cd ziprecruiter && git fetch --prune --prune-tags

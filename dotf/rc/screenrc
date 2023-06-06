@@ -1,0 +1,6 @@
+# Alt+left/right switches windows, alt+shift+left/right moves windows
+defscrollback 100000
+bindkey "\033[1;9C" next
+bindkey "\033[1;9D" prev
+bindkey "\033[1;10C" number +1
+bindkey "\033[1;10D" number -1
