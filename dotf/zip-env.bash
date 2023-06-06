@@ -5,8 +5,9 @@ export ZR_APP_LIVE_CONFIG=/run/shm/www.starterview/live.json
 export PATH=$PATH:$STARTERVIEW/infrastructure/terraform/bin
 
 if [ $SHLVL -eq 1 ] ; then
-  export PERL5LIB=$(printf "$STARTERVIEW/app/lib"; printf ":%s" $STARTERVIEW/common/perl/*/lib)
-  eval "$(perl -I$HOME/perl5/lib/perl5 -Mlocal::lib)"
+  echo skipping mucking with PERL vars
+  #export PERL5LIB=$(printf "$STARTERVIEW/app/lib"; printf ":%s" $STARTERVIEW/common/perl/*/lib)
+  #eval "$(perl -I$HOME/perl5/lib/perl5 -Mlocal::lib)"
 fi
 
 # [ $SHLVL -eq 1 ] && eval "$(perl -I$HOME/perl5/lib/perl5 -Mlocal::lib)"
@@ -21,7 +22,7 @@ export ZR_LOG_FORMAT=plain
 export MRSA_LESS_CHATTER=1
 
 pushd $STARTERVIEW/app/lib/ZR/JobResponse/DeliveryAgent > /dev/null
-pushd $STARTERVIEW/app/t/tests/TestsFor/ZR/JobResponse/DeliveryAgent > /dev/null
+# pushd $STARTERVIEW/app/t/tests/TestsFor/ZR/JobResponse/DeliveryAgent > /dev/null
 pushd -0 > /dev/null
 pushd $HOME/ziprecruiter > /dev/null
 

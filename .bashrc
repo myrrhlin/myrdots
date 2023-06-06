@@ -78,5 +78,6 @@ export ECR_URL="734371315114.dkr.ecr.us-west-2.amazonaws.com"
 
 [ -f ~/.bash_aliases ] && source ~/.bash_aliases
 
+# this goes last because it has a random delay
 ...sourceif "$DOTF/agentup.sh"
 

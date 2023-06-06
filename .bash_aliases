@@ -1,6 +1,7 @@
 # aliases are _not_ preserved in subshells
 
 alias fig=docker-compose
+alias grm='git fetch -p && git rebase --autostash origin/main'
 
 alias qprove="$STARTERVIEW/bin/zr-push-branch-for-testing --nopush --branch"
 alias gbranches=contrib/git/aeruder/git-branch-summary
