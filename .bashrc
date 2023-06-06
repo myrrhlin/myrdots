@@ -39,15 +39,27 @@ if [ -n "$DOTF"  ] ; then
   fi
 fi
 
-export STARTERVIEW=$HOME/repo/ziprecruiter
-export PATH=$STARTERVIEW/bin:$STARTERVIEW/infrastructure/terraform/bin:$PATH
+export ZR_REPO="$HOME/repo/ziprecruiter"
+export STARTERVIEW="$ZR_REPO"
+export PATH="$ZR_REPO/bin:$ZR_REPO/infrastructure/terraform/bin:$PATH"
+# export ECR_URL="734371315114.dkr.ecr.us-west-2.amazonaws.com"
+
+# add ZR for local perl? this should come before perlbrew...
+export PERL5LIB="$ZR_REPO/app/lib"
 
 [ -f /usr/local/opt/asdf/asdf.sh ] && source /usr/local/opt/asdf/asdf.sh  
+
+# setup perl local lib
+# eval "$(perl -I$HOME/perl5/lib/perl5 -Mlocal::lib)"
+# install perlbrew
+test -f "$HOME/perl5/perlbrew/etc/bashrc" && source ~/perl5/perlbrew/etc/bashrc
 
 export GIT_PS1_SHOWCOLORHINTS=true
 export GIT_PS1_SHOWDIRTYSTATE=1
 # export GIT_PS1_SHOWSTASHSTATE=1
 export EDITOR=vim
+
+[ -f ~/.bash_aliases ] && source ~/.bash_aliases
 
 # https://stackoverflow.com/questions/18880024/start-ssh-agent-on-login
 
@@ -107,6 +119,4 @@ if [ -f "${SSH_ENV}" ]; then
 else
     start_agent;
 fi
-
-[ -f .bash_aliases ] && source .bash_aliases
 
