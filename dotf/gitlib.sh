@@ -86,9 +86,9 @@ function current_branch() {
 }
 # e.g. "origin/master"
 function remote_branch() {
-    # TODO -- use a given branch,
+    local branch="$1"
     # then use this in "branch_exists_remote"
-    git rev-parse --abbrev-ref --symbolic-full-name @{u} 2>/dev/null
+    git rev-parse --abbrev-ref --symbolic-full-name $branch@{u} 2>/dev/null
 }
 # outputs the sha1 of the current HEAD
 function current_sha1() {
