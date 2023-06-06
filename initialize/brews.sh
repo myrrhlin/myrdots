@@ -46,6 +46,7 @@ python@3.9
 awscli
 syncthing
 mysql-client
+stern
 mkcert
 nss
 EOLIST
