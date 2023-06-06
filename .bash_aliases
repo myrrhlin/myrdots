@@ -1,5 +1,7 @@
 # aliases are _not_ preserved in subshells
 
+alias fig=docker-compose
+
 alias qprove="$STARTERVIEW/bin/zr-push-branch-for-testing --nopush --branch"
 alias gbranches=contrib/git/aeruder/git-branch-summary
 
@@ -12,7 +14,7 @@ alias set-simdb='ZR_APP_LIVE_CONFIG=/run/shm/www.starterview/live.json tsar-v --
 
 alias aptup='sudo apt update && sudo apt upgrade'
 
-alias zpanm='cpanm --cpanmetadb http://zpan-api.d1-dev-uw2.zipaws.com/v1 -M https://public-nosensitive-ziprecruiter-zpan.s3-us-west-2.amazonaws.com -S'
+alias zpanm='cpanm --cpanmetadb http://zpan-api.d1-dev-uw2.zipaws.com/v1 -M https://public-nosensitive-ziprecruiter-zpan.s3-us-west-2.amazonaws.com'
 # -L /usr/local/zrperl/lib  put stuff in /usr/local/zrperl/lib/lib/perl5
 
 alias zamu="$STARTERVIEW/bin/laptop/macos/zamu.scpt"
