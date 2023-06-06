@@ -1,3 +1,10 @@
+# reminders so i don't have to look it up again.
+# subshells keep: exported vars and function, cwd, file mode mask, open files
+# bash startup files: for --login
+# 1) /etc/profile
+# 2) first: ~/.bash_profile ~/.bash_login ~/.profile
+# otherwise, interactive but not login:
+# ~/.bashrc
 
 # https://docs.brew.sh/Homebrew-and-Python
 
