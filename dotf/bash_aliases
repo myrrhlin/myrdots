@@ -7,6 +7,8 @@ function pathappend() {
   esac; 
 }
 
+alias gpush=$DOTF/gpush.sh
+
 alias qprove="$STARTERVIEW/bin/zr-push-branch-for-testing --nopush --branch"
 alias gbranches=contrib/git/aeruder/git-branch-summary
 
