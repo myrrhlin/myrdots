@@ -8,6 +8,10 @@ source /usr/local/etc/bash_completion.d/git-completion.bash
 source /usr/local/etc/bash_completion.d/git-prompt.sh
 source /usr/local/etc/bash_completion.d/tig-completion.bash
 
+function set_tab_title() {
+  printf '\e]1;%s\a' "$*"
+}
+
 # find dotf directory, relative to this file
 function _dotf_dir {
   local here="$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null 2>&1 && pwd )"
