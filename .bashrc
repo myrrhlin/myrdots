@@ -45,12 +45,14 @@ export PATH="$ZR_REPO/bin:$ZR_REPO/infrastructure/terraform/bin:$PATH"
 # export ECR_URL="734371315114.dkr.ecr.us-west-2.amazonaws.com"
 
 # add ZR for local perl? this should come before perlbrew...
-export PERL5LIB="$ZR_REPO/app/lib"
+if [ $SHLVL -eq 1 ] ; then
+  export PERL5LIB=$(printf "$ZR_REPO/app/lib"; printf ":%s" $ZR_REPO/common/perl/*/lib)
+  # setup perl local lib:
+  eval "$(perl -I$HOME/perl5/lib/perl5 -Mlocal::lib)"
+fi
 
 [ -f /usr/local/opt/asdf/asdf.sh ] && source /usr/local/opt/asdf/asdf.sh  
 
-# setup perl local lib
-# eval "$(perl -I$HOME/perl5/lib/perl5 -Mlocal::lib)"
 # install perlbrew
 test -f "$HOME/perl5/perlbrew/etc/bashrc" && source ~/perl5/perlbrew/etc/bashrc
 
