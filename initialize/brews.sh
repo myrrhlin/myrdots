@@ -43,7 +43,6 @@ mc
 bash
 tmux
 python@3.9
-awscli
 syncthing
 mysql-client
 stern
