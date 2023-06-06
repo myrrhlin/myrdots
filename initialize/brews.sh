@@ -40,6 +40,7 @@ tig
 bash
 python@3.9
 awscli
+syncthing
 EOLIST
 
 # python is required by awscli
