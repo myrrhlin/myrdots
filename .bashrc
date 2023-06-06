@@ -26,10 +26,15 @@ fn_exists() {
   test function = "$thingy"
 }
 
+# requires git-prompt.sh above
+PROMPT_COMMAND='__git_ps1 "[\u@\h \W]" "\\\$ "'
+
 DOTF=$(_dotf_dir)
 if [ -n "$DOTF"  ] ; then 
   if fn_exists "...sourceif" ; then
     ...sourceif "$DOTF/dirstack.sh"
+    # ehistory alters PROMPT_COMMAND
+    ...sourceif "$DOTF/ehistory.bash"
     ...sourceif "$DOTF/gitlib.sh"
   fi
 fi
@@ -43,8 +48,6 @@ export GIT_PS1_SHOWCOLORHINTS=true
 export GIT_PS1_SHOWDIRTYSTATE=1
 # export GIT_PS1_SHOWSTASHSTATE=1
 export EDITOR=vim
-
-PROMPT_COMMAND='__git_ps1 "[\u@\h \W]" "\\\$ "'
 
 # https://stackoverflow.com/questions/18880024/start-ssh-agent-on-login
 
