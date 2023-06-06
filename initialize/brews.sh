@@ -37,6 +37,7 @@ bash
 jq
 the_silver_searcher
 tig
+mc
 bash
 tmux
 python@3.9
