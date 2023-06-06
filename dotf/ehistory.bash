@@ -7,7 +7,9 @@ export HISTSIZE=
 export HISTTIMEFORMAT="[%F %T] "
 # Change the file location because certain bash sessions truncate .bash_history file upon close.
 # http://superuser.com/questions/575479/bash-history-truncated-to-500-lines-on-each-login
-export HISTFILE=~/.bash_eternal_history
+if [ -z "$HISTFILE" ] ; then
+  export HISTFILE=~/.bash_eternal_history
+fi
 # Force prompt to write history after every command.
 # http://superuser.com/questions/20900/bash-history-loss
 PROMPT_COMMAND="history -a; $PROMPT_COMMAND"
