@@ -108,3 +108,5 @@ else
     start_agent;
 fi
 
+[ -f .bash_aliases ] && source .bash_aliases
+
