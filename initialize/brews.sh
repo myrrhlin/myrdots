@@ -64,7 +64,7 @@ if grep $brewbash /etc/shells >/dev/null ; then
   # if [ $(grep bash /etc/shells | wc -l) -eq 1 ] ; then
   echo homebrew bash is permitted login shell
 else
-  echo admin required to add updated bash to permitted shells
+  echo admin required to add updated bash to permitted shells:
   echo sudo -e /etc/shells
   echo $brewbash
   # sudo cat <<EOD >>/etc/shells
@@ -85,6 +85,7 @@ fi
 
 # two options for installing terraform
 function terraform1() {
+  # deprecated.  use bin/terraform
   maybe_install asdf
   asdf plugin-add terraform
   asdf install terraform 0.11.14
@@ -92,6 +93,7 @@ function terraform1() {
 }
 
 function terraform2() {
+  # deprecated.  use bin/terraform
   maybe_install 'terraform@0.11'
   brew link --force 'terraform@0.11'
   brew pin 'terraform@0.11'
