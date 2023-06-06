@@ -51,8 +51,6 @@ if [ -n "$DOTF"  ] ; then
   fi
 fi
 
-[ -f /usr/local/opt/asdf/libexec/asdf.sh ] && source /usr/local/opt/asdf/libexec/asdf.sh  
-
 # let curl use current certs from https://curl.se/docs/caextract.html
 # https://blog.bytesguy.com/resolving-lets-encrypt-issues-with-curl-on-macos
 # curl -k https://curl.se/ca/cacert.pem -o ~/.cacert.pem
