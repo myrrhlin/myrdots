@@ -8,6 +8,9 @@ source /usr/local/etc/bash_completion.d/git-completion.bash
 source /usr/local/etc/bash_completion.d/git-prompt.sh
 source /usr/local/etc/bash_completion.d/tig-completion.bash
 
+# requires git-prompt.sh above
+PROMPT_COMMAND='__git_ps1 "[\u@\h \W]" "\\\$ "'
+
 function set_tab_title() {
   printf '\e]1;%s\a' "$*"
 }
@@ -29,9 +32,6 @@ fn_exists() {
   local thingy=$(LC_ALL=C type -t $1)
   test function = "$thingy"
 }
-
-# requires git-prompt.sh above
-PROMPT_COMMAND='__git_ps1 "[\u@\h \W]" "\\\$ "'
 
 DOTF=$(_dotf_dir)
 if [ -n "$DOTF"  ] ; then 
