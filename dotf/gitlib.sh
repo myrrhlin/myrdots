@@ -51,8 +51,8 @@ REMOTE=${GITREMOTE:-origin}
 
 # returns true (0) if a repo contains current path
 function repo_exists() {
-	# &> redirects both stdout and stderr
-	git status -s &> /dev/null
+    # &> redirects both stdout and stderr
+    git status -s &> /dev/null
 }
 # returns true (0) if modified files have been staged (git add) but not committed
 function staged_changes_exist() {
@@ -77,6 +77,18 @@ function branch_exists_remote() {
 
 # ================================================================
 # informational functions, outputting a piece of data, capture with $()
+
+# given a branch name, return the remote prefix name, if any
+function _remote_prefix() {
+  local branch="$1"
+  # local prefix=$(echo $branch | perl -aF/ -E 'say $F[0] if @F>1')
+  local prefix=$(echo $branch | awk '{ split($0, a, "/"); if (2 in a) print a[1] }')
+  if [ -n "$prefix" ] ; then
+    if git remote get-url "$prefix" &>/dev/null ; then
+      echo $prefix
+    fi
+  fi
+}
 
 # outputs the current branch name... what happens in floating HEAD?
 function current_branch() {
