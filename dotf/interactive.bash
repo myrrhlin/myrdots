@@ -14,6 +14,10 @@ source $DOTF/ehistory.bash
 function lt {
   ls -lt "$@" | head
 }
+function modvers {
+  local modname="$@"
+  perl -M"$modname" -E"say \$$modname::VERSION"
+}
 function authors {
   git annotate --line-porcelain "$@" | grep "^author " | sort | uniq -c | sort -nrk 1
 }
