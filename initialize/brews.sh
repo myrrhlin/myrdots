@@ -36,6 +36,8 @@ git
 bash
 jq
 the_silver_searcher
+fzf
+fd
 tig
 mc
 bash
