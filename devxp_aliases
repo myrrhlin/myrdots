@@ -17,6 +17,8 @@ alias wspod="kubectl get pod -l app.kubernetes.io/name=www -n $WORKSPACE-www--st
 alias wsshell="kubectl exec -it `kubectl get pod -l app.kubernetes.io/name=www -n $WORKSPACE-www--starterview -o name | sed -E 's/^.*\///'` -n $WORKSPACE-www--starterview -c main-www -- bash"
 alias wssql="kubectl exec -it `kubectl get pod -l app.kubernetes.io/name=db--blankdb -n $WORKSPACE-db--blankdb -o name | sed -E 's/^.*\///'` -n $WORKSPACE-db--blankdb -c main -- mysql -u svc_starterview --password=simdb-svc_starterview -h 127.0.0.1 -P 3306 --protocol=TCP starterview"
 
+alias tsh-sv=www/starterview/bin/test-shell
+
 # e.g.
 # SVAPPLICATION=www-starterview
 # SVLAYOUT=simdb
