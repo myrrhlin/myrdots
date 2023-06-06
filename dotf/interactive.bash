@@ -18,7 +18,14 @@ function authors {
   git annotate --line-porcelain "$@" | grep "^author " | sort | uniq -c | sort -nrk 1
 }
 
+
 export PERLDOC_PAGER='less -r'
 
 source $DOTF/zip-env.bash
 
+ZPAN_URL=http://zpan-api.d1-dev-uw2.zipaws.com/v1
+function zpani {
+  for modname in "$@" ; do
+    curl $ZPAN_URL/history/$modname
+  done
+}
