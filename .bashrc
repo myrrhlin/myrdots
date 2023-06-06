@@ -46,8 +46,8 @@ fi
 
 export ZR_REPO="$HOME/repo/ziprecruiter"
 export STARTERVIEW="$ZR_REPO"
-export PATH="$ZR_REPO/bin:$ZR_REPO/infrastructure/terraform/bin:$PATH"
-# export ECR_URL="734371315114.dkr.ecr.us-west-2.amazonaws.com"
+export PATH="~/go/bin:$ZR_REPO/bin:$ZR_REPO/infrastructure/terraform/bin:$PATH"
+export ECR_URL="734371315114.dkr.ecr.us-west-2.amazonaws.com"
 
 # add ZR for local perl? this should come before perlbrew...
 if [ $SHLVL -eq 1 ] ; then
