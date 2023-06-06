@@ -56,7 +56,7 @@ if [ $SHLVL -eq 1 ] ; then
   eval "$(perl -I$HOME/perl5/lib/perl5 -Mlocal::lib)"
 fi
 
-[ -f /usr/local/opt/asdf/asdf.sh ] && source /usr/local/opt/asdf/asdf.sh  
+[ -f /usr/local/opt/asdf/libexec/asdf.sh ] && source /usr/local/opt/asdf/libexec/asdf.sh  
 
 # install perlbrew
 test -f "$HOME/perl5/perlbrew/etc/bashrc" && source ~/perl5/perlbrew/etc/bashrc
