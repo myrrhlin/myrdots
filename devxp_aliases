@@ -6,6 +6,7 @@ alias k8s-p='export KUBECONFIG=~/.kube/configs/p1-prod-ue1; echo $KUBECONFIG'
 k8s-d
 export WORKSPACE="d-${WSNAME:-$USER}01"
 export TSARV_COLORS=1
+export DASHBOARD_EXEC_DEFAULT_CMD=bash
 alias wscreate='kubectl workspace create -f www/starterview/layouts/simdb/ $WORKSPACE'
 alias wsstatus='kubectl workspace status'
 alias wssync='kubectl sync --layout www/starterview/layouts/simdb $WORKSPACE --compress'
