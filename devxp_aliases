@@ -1,0 +1,18 @@
+# aliases for switching between tiers in k8s. (make sure to make selection in ZAM as well.)
+alias k8s-d='export KUBECONFIG=~/.kube/configs/d1-dev-uw2; echo $KUBECONFIG'
+alias k8s-s='export KUBECONFIG=~/.kube/configs/s2-stg-ue1; echo $KUBECONFIG'
+alias k8s-p='export KUBECONFIG=~/.kube/configs/p1-prod-ue1; echo $KUBECONFIG'
+
+k8s-d
+export WORKSPACE="d-${WSNAME:-$USER}01"
+export TSARV_COLORS=1
+alias wscreate='kubectl workspace create -f www/starterview/layouts/simdb/ $WORKSPACE'
+alias wsstatus='kubectl workspace status'
+alias wssync='kubectl sync --layout www/starterview/layouts/simdb $WORKSPACE --compress'
+alias wsclear='kubectl workspace clear $WORKSPACE'
+alias wsdelete='kubectl workspace delete $WORKSPACE'
+alias wslogs='kubectl logs -f -n $WORKSPACE-www--starterview -l app.kubernetes.io/name=www -c main-www | logsnip'
+alias wspod="kubectl get pod -l app.kubernetes.io/name=www -n $WORKSPACE-www--starterview -o name"
+alias wsshell="kubectl exec -it `kubectl get pod -l app.kubernetes.io/name=www -n $WORKSPACE-www--starterview -o name | sed -E 's/^.*\///'` -n $WORKSPACE-www--starterview -c main-www -- bash"
+alias wssql="kubectl exec -it `kubectl get pod -l app.kubernetes.io/name=db--blankdb -n $WORKSPACE-db--blankdb -o name | sed -E 's/^.*\///'` -n $WORKSPACE-db--blankdb -c main -- mysql -u svc_starterview --password=simdb-svc_starterview -h 127.0.0.1 -P 3306 --protocol=TCP starterview"
+
