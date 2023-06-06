@@ -1,6 +1,7 @@
 # source ~/perl5/perlbrew/etc/bashrc
 export PATH="$HOME/.plenv/bin:$PATH:$HOME/bin"
 eval "$(plenv init -)"
+export PATH="/usr/local/opt/ruby/bin:$PATH"
 
 # /usr/local/etc/bash_completion.d
 #asdf.bash		brew			git-prompt.sh
