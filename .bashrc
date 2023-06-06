@@ -35,6 +35,7 @@ PROMPT_COMMAND='__git_ps1 "[\u@\h \W]" "\\\$ "'
 
 DOTF=$(_dotf_dir)
 if [ -n "$DOTF"  ] ; then 
+  export DOTF
   if fn_exists "...sourceif" ; then
     ...sourceif "$DOTF/dirstack.sh"
     # ehistory alters PROMPT_COMMAND
