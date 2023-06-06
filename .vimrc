@@ -171,3 +171,6 @@ nnoremap <silent> <A-Left> :execute 'silent! tabmove ' . (tabpagenr()-2)<CR>
 command! -nargs=* -complete=file Tig      call tig#Tig(<f-args>)
 command!                         TigBlame call tig#TigBlame()
 
+" :help perl.vim
+let perl_fold=1
+
