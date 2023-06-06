@@ -44,19 +44,20 @@ if [ -n "$DOTF"  ] ; then
   fi
 fi
 
-export ZR_REPO="$HOME/repo/ziprecruiter"
-export STARTERVIEW="$ZR_REPO"
-export PATH="~/go/bin:$ZR_REPO/bin:$ZR_REPO/infrastructure/terraform/bin:$PATH"
-export ECR_URL="734371315114.dkr.ecr.us-west-2.amazonaws.com"
+[ -f /usr/local/opt/asdf/libexec/asdf.sh ] && source /usr/local/opt/asdf/libexec/asdf.sh  
+
+# let curl use current certs from https://curl.se/docs/caextract.html
+# https://blog.bytesguy.com/resolving-lets-encrypt-issues-with-curl-on-macos
+# curl -k https://curl.se/ca/cacert.pem -o ~/.cacert.pem
+test -f "$HOME/.cacert.pem" && export CURL_CA_BUNDLE=~/.cacert.pem
 
 # add ZR for local perl? this should come before perlbrew...
+export ZR_REPO="$HOME/ziprecruiter"
 if [ $SHLVL -eq 1 ] ; then
   export PERL5LIB=$(printf "$ZR_REPO/app/lib"; printf ":%s" $ZR_REPO/common/perl/*/lib)
   # setup perl local lib:
   eval "$(perl -I$HOME/perl5/lib/perl5 -Mlocal::lib)"
 fi
-
-[ -f /usr/local/opt/asdf/libexec/asdf.sh ] && source /usr/local/opt/asdf/libexec/asdf.sh  
 
 # install perlbrew
 test -f "$HOME/perl5/perlbrew/etc/bashrc" && source ~/perl5/perlbrew/etc/bashrc
@@ -65,6 +66,10 @@ export GIT_PS1_SHOWCOLORHINTS=true
 export GIT_PS1_SHOWDIRTYSTATE=1
 # export GIT_PS1_SHOWSTASHSTATE=1
 export EDITOR=vim
+
+export STARTERVIEW="$ZR_REPO"
+export PATH="~/go/bin:$ZR_REPO/bin:$ZR_REPO/infrastructure/terraform/bin:$PATH"
+export ECR_URL="734371315114.dkr.ecr.us-west-2.amazonaws.com"
 
 [ -f ~/.bash_aliases ] && source ~/.bash_aliases
 
@@ -105,7 +110,6 @@ function ensure_agent {
     start_agent;
   fi
 }
-
 
 # Source SSH settings, if applicable
 
