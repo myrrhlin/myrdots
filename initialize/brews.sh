@@ -42,6 +42,7 @@ tmux
 python@3.9
 awscli
 syncthing
+mysql-client
 mkcert
 nss
 EOLIST
