@@ -1,4 +1,4 @@
-#! /bin/bash
+#! /usr/bin/env bash
 
 # brews
 
@@ -38,12 +38,19 @@ jq
 the_silver_searcher
 tig
 bash
+tmux
 python@3.9
 awscli
 syncthing
+mkcert
+nss
 EOLIST
 
 # python is required by awscli
+# mkcert required to make local cert authority and cert for dev work
+# https://dev.to/aschmelyun/using-the-magic-of-mkcert-to-enable-valid-https-on-local-dev-sites-3a3c
+# nss for firefox
+
 # possibly add tmate and pgcli
 
 # add new  bash to permitted shells list
