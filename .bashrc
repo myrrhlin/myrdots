@@ -8,6 +8,32 @@ source /usr/local/etc/bash_completion.d/git-completion.bash
 source /usr/local/etc/bash_completion.d/git-prompt.sh
 source /usr/local/etc/bash_completion.d/tig-completion.bash
 
+# find dotf directory, relative to this file
+function _dotf_dir {
+  local here="$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null 2>&1 && pwd )"
+  if [ -d "$here/dotf" ] ; then
+    DOTF="$here/dotf"
+    echo $DOTF
+  else
+    false;
+  fi
+}
+
+fn_exists() {
+  # not all bashes have -t option for type builtin
+  # LC_ALL=C type -t $1 | grep -q 'function'
+  local thingy=$(LC_ALL=C type -t $1)
+  test function = "$thingy"
+}
+
+DOTF=$(_dotf_dir)
+if [ -n "$DOTF"  ] ; then 
+  if fn_exists "...sourceif" ; then
+    ...sourceif "$DOTF/dirstack.sh"
+    ...sourceif "$DOTF/gitlib.sh"
+  fi
+fi
+
 export STARTERVIEW=$HOME/repo/ziprecruiter
 export PATH=$STARTERVIEW/bin:$STARTERVIEW/infrastructure/terraform/bin:$PATH
 
