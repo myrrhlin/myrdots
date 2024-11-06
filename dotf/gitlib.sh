@@ -218,17 +218,23 @@ function greb() {
 
 # show commits in git branch that aren't in your current branch
 function gbin {
+    local dbranch="${1:?branch name required}"  # error if null or unset
+    local path="${2:-}"
+    branch_exists $dbranch || return $E_BADARGS
     local current_branch=$(current_branch)
-    echo branch \($1\) has these commits and \($current_branch\) does not
-    git log ..$1 --no-merges --format='%h | %an | %ad | %s' --date=format:'%F %H:%M'
+    echo branch \($dbranch\) has these commits and \($current_branch\) does not
+    [ -n "$path" ] && path="-- $path"
+    git log ..$dbranch --no-merges --format='%h | %an | %ad | %s' --date=format:'%F %H:%M' $path
 }
 
 # show commits in your current branch that aren't in a specified branch
 function gbout {
-    local dbranch="$1"
+    local dbranch="${1:?branch name required}"  # error if null or unset
+    local path="${2:-}"
     branch_exists $dbranch || return $E_BADARGS
     echo branch \($(current_branch)\) has these commits and \($dbranch\) does not
-    git log $dbranch.. --no-merges --format='%h | %an | %ad | %s' --date=format:'%F %H:%M'
+    [ -n "$path" ] && path="-- $path"
+    git log $dbranch.. --no-merges --format='%h | %an | %ad | %s' --date=format:'%F %H:%M' $path
 }
 
 # needs git-bash-completion...
