@@ -34,18 +34,18 @@ do
 done 10<<EOLIST
 git
 bash
+tig
 jq
+ripgrep
 the_silver_searcher
+bash
+coreutils
 fzf
 fd
-tig
 mc
-bash
 tmux
-python@3.9
-syncthing
+python@3.13
 mysql-client
-stern
 mkcert
 nss
 EOLIST
@@ -61,7 +61,7 @@ EOLIST
 brewbash=/usr/local/bin/bash
 if grep $brewbash /etc/shells >/dev/null ; then
   # if [ $(grep bash /etc/shells | wc -l) -eq 1 ] ; then
-  echo homebrew bash is permitted login shell
+  echo homebrew bash is a permitted login shell
 else
   echo admin required to add updated bash to permitted shells:
   echo sudo -e /etc/shells
@@ -75,7 +75,7 @@ fi
 if grep $brewbash /etc/shells >/dev/null ; then
   #UserShell: /bin/bash
   current=$( dscl . -read ~/ UserShell | awk '{print $2}')
-  if [ "$current" = "/bin/bash" ] ; then 
+  if [ "$current" = "/bin/bash" ] ; then
     echo password required to change default shell
     chsh -s $brewbash
     echo default shell changed!
@@ -98,4 +98,4 @@ function terraform2() {
   brew pin 'terraform@0.11'
 }
 
- 
+
