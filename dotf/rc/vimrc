@@ -1,4 +1,5 @@
 
+" (compatibility with vi can cause unexpected issues)
 " Set 'nocompatible' to ward off unexpected things that your distro might
 " have made, as well as sanely reset options when re-sourcing .vimrc
 set nocompatible
@@ -6,6 +7,7 @@ set nocompatible
 " Attempt to determine the type of a file based on its name and possibly its
 " contents. Use this to allow intelligent auto-indenting for each filetype,
 " and for plugins that are filetype specific.
+" (this enables filetype detection, and both plugin and indent features)
 filetype indent plugin on
 
 " Enable syntax highlighting
@@ -41,6 +43,8 @@ set autowriteall
 
 " Better command-line completion
 set wildmenu
+" make wildmenu behave similar to bash completion
+set wildmode=list:longest
 
 " Show partial commands in the last line of the screen
 set showcmd
@@ -73,6 +77,11 @@ set backspace=indent,eol,start
 " When opening a new line and no filetype-specific indenting is enabled, keep
 " the same indent as the line you're currently on. Useful for READMEs, etc.
 set autoindent
+
+" adds an indent after keywords, c-style bracing {, also dedents lines with #
+" use with autoindent. modify with cinkeys, cinoptions, cinwords, cinscopedecls
+" https://vimhelp.org/options.txt.html#%27smartindent%27
+" set smartindent
 
 " Stop certain movements from always going to the first character of a line.
 " While this behaviour deviates from that of Vi, it does what most users
@@ -111,30 +120,72 @@ set number
 " Quickly time out on keycodes, but never time out on mappings
 set notimeout ttimeout ttimeoutlen=200
 
+" Highlight cursor line underneath cursor (?)
+" set cursorline
+
 " Use <F11> to toggle between 'paste' and 'nopaste'
 set pastetoggle=<F11>
 
+" command history default is 20
+set history=100
+
+" background color
+set bg=dark
+
+" remember cursor position on open
+if has("autocmd")
+  au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | execute "normal! g`\"" | endif
+endif
+
+" allow lines to extend to any length
+set nowrap
+
+set foldmethod=syntax
+set foldlevelstart=3
+
+let perl_fold=1
+let sh_fold_enabled=1
+let perl_extended_vars=1
+let perl_sync_dist=250
+
+" related to tab sessions:
+set ssop-=options    " do not store global and local values in a session
+set ssop-=folds      " do not store folds
+
+" function to strip trailing whitespace on entire buffer
+function! <SID>StripTrailingWhitespaces()
+    let l = line(".")
+    let c = col(".")
+    %s/\s\+$//e
+    call cursor(l, c)
+endfun
+
+" strip trailing space on save for filetypes...
+" using file extension
+autocmd BufWritePre *.pl,*.pm,*.t :call <SID>StripTrailingWhitespaces()
+
+" Often files are not necessarily identified by extension, if so use e.g.:
+" autocmd BufWritePre * if &ft =~ 'sh\|perl\|python' | :call <SID>StripTrailingWhitespaces() | endif
+
+" Or if you want it to be called when file-type is set
+autocmd FileType sh,perl,python  :call <SID>StripTrailingWhitespaces()
 
 "------------------------------------------------------------
 " Indentation options {{{1
 "
-" Indentation settings according to personal preference.
+" Indentation settings according to personal preference, when not controlled
+" by filetype.
 
-" Indentation settings for using 2 spaces instead of tabs.
+" Indentation settings for using <n> spaces instead of tabs.
 " Do not change 'tabstop' from its default value of 8 with this setup.
-set shiftwidth=2
-set softtabstop=2
+set shiftwidth=3
+set softtabstop=3
 set expandtab
 
 " Indentation settings for using hard tabs for indent. Display tabs as
-" two characters wide.
-"set shiftwidth=2
-"set tabstop=2
-
-set bg=dark
-
-"Remove all trailing whitespace by pressing F5
-nnoremap <F5> :let _s=@/<Bar>:%s/\s\+$//e<Bar>:let @/=_s<Bar><CR>
+" <n> characters wide.
+"set shiftwidth=3
+"set tabstop=3
 
 "------------------------------------------------------------
 " Mappings {{{1
@@ -149,11 +200,19 @@ map Y y$
 " next search
 nnoremap <C-L> :nohl<CR><C-L>
 
+" Remove all trailing whitespace by pressing F5
+" but this moves the cursor?
+nnoremap <F5> :let _s=@/<Bar>:%s/\s\+$//e<Bar>:let @/=_s<Bar><CR>
+
+
+
 " -----------------------------------------------------------
 set encoding=utf-8
 scriptencoding utf-8
 
-set listchars=tab:→…,trail:•,nbsp:⎵,extends:⟩,precedes:⟨,eol:¶
+" display whitespace
+" set listchars=tab:→…,trail:•,nbsp:⎵,extends:⟩,precedes:⟨,eol:¶
+set listchars=eol:¬,tab:▸\ 
 
 "  tab editing   https://vim.fandom.com/wiki/Using_tab_pages
 "  https://vim.fandom.com/wiki/Alternative_tab_navigation
