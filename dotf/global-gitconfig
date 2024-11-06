@@ -1,0 +1,53 @@
+[user]
+	email = 1197072+myrrhlin@users.noreply.github.com
+	name = pyrrhlin
+[core]
+	editor = vim
+	pager = less
+[log]
+	date = format:"%F %H:%M"
+[branch]
+	# all branches will pull using rebase
+	autosetuprebase = always
+[push]
+	default = simple
+[merge]
+# git config --global merge.ff false # even create extra merge commit when fast forward merge would be possible
+	ff = false
+	# conflictstyle = diff3
+[pull]
+# git config --global pull.rebase # set up pull to rebase instead of merge
+	rebase = true
+# git config --global pull.ff only # Disallows non ff merges on pull. Overrides merge.ff when pulling
+	ff = only
+[rebase]
+	autoSquash = true
+[rerere]
+	enabled = true
+[apply]
+	whitespace = fix
+	ignoreWhitespace = change
+[alias]
+	co = checkout
+	cp = cherry-pick
+	pushf = push --force-with-lease
+	hist = log --pretty=format:\"%h %ad | %s%d [%an]\" --graph --date=short
+	st = status -s
+	bl = branch -v --list
+	branchdel = push origin --delete
+	dsf = "!f() { [ -z \"$GIT_PREFIX\" ] || cd \"$GIT_PREFIX\" && git diff --color \"$@\" | diff-so-fancy.pl | less --tabs=4 -RFX; }; f"
+	reword = "!f() { branch=`git symbolic-ref --short HEAD`; git checkout $1; git commit --amend; git checkout $branch; }; f"
+	ls = ls-files
+	recent = "!r(){ git for-each-ref --sort=-committerdate refs/heads --format='%(HEAD)%(color:yellow)%(refname:short)|%(color:bold green)%(committerdate:relative)|%(color:blue)%(subject)|%(color:magenta)%(authorname)%(color:reset)'|column -ts'|'; }; r"
+        br = for-each-ref --sort=-committerdate refs/heads/ --format='%(HEAD) %(color:green)%(committerdate:short)%(color:reset) %(color:yellow)%(refname:short)%(color:reset) - %(color:red)%(objectname:short)%(color:reset) : %(contents:subject)'
+        # br = for-each-ref --sort=-committerdate refs/heads/ --format='%(HEAD) %(color:yellow)%(refname:short)%(color:reset) - %(color:red)%(objectname:short)%(color:reset) - (%(color:green)%(committerdate:relative)%(color:reset)) %(authorname) : %(contents:subject)'
+	aliases = config --get-regexp ^alias\\.
+	# branches = "for-each-ref --sort=-committerdate refs/heads/ --format='%(HEAD) %(color:yellow)%(refname:short)%(color:reset) - %(color:red)%(objectname:short)%(color:reset) - %(contents:subject) - (%(color:green)%(committerdate:relative)%(color:reset))'"
+[checkout]
+	defaultRemote = origin
+[init]
+	defaultBranch = main
+[commit]
+	verbose = 1
+[protocol]
+	version = 2
